@@ -23,6 +23,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         let overview : String?
         let poster_path: String?
         let backdrop_path: String?
+        let release_date: String?
+        static let baseImageURL = "https://image.tmdb.org/t/p/w500"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     func fetchMovies() {
         self.activityIndicator.startAnimating()
-        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"
+        let urlString = "https://api.themoviedb.org/3/movie/363088/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: urlString)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -56,7 +58,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                     let poster_path = movieHolder["poster_path"] as! String
                     let overview = movieHolder["overview"] as! String
                     let backdrop_path = movieHolder["backdrop_path"] as! String
-                    let movie = Movie.init(title: title, overview: overview, poster_path: poster_path, backdrop_path: backdrop_path)
+                    let release_date = movieHolder["release_date"] as! String
+                    let movie = Movie.init(title: title, overview: overview, poster_path: poster_path, backdrop_path: backdrop_path, release_date: release_date)
                     self.movies.append(movie)
                 }
                 self.activityIndicator.stopAnimating()
@@ -67,7 +70,13 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         task.resume()
         
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let moviesDetail = segue.destination as! MovieDetailsViewController
+        let cell = sender as! MovieCell
+        let indexPath = tableView.indexPath(for: cell)!
+        moviesDetail.movie = movies[indexPath.row]
+        cell.setSelected(false, animated: false)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,8 +96,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPath!)!
+        let posterURL = URL(string: Movie.baseImageURL + posterPath!)!
         cell.posterImageView.af_setImage(withURL: posterURL)
         return cell
     }
