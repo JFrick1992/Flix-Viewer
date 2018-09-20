@@ -12,11 +12,18 @@ import AlamofireImage
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
     
+    var movies = [Movie]()
+    
+    
+    struct Movie {
+        let title : String?
+        let overview : String?
+        let poster_path: String?
+        let backdrop_path: String?
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,8 +50,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 print(error.localizedDescription)
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                let moviesDic = dataDictionary["results"] as! [[String: Any]]
+                for movieHolder in moviesDic {
+                    let title = movieHolder["title"] as! String
+                    let poster_path = movieHolder["poster_path"] as! String
+                    let overview = movieHolder["overview"] as! String
+                    let backdrop_path = movieHolder["backdrop_path"] as! String
+                    let movie = Movie.init(title: title, overview: overview, poster_path: poster_path, backdrop_path: backdrop_path)
+                    self.movies.append(movie)
+                }
                 self.activityIndicator.stopAnimating()
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
@@ -66,16 +80,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
+        let title = movies[indexPath.row].title
+        let overview = movies[indexPath.row].overview
+        let posterPath = movies[indexPath.row].poster_path
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
         let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPath)!
+        let posterURL = URL(string: baseURLString + posterPath!)!
         cell.posterImageView.af_setImage(withURL: posterURL)
         return cell
     }
