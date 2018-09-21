@@ -9,6 +9,15 @@
 import UIKit
 import AlamofireImage
 
+struct Movie {
+    let title : String?
+    let overview : String?
+    let poster_path: String?
+    let backdrop_path: String?
+    let release_date: String?
+    static let baseImageURL = "https://image.tmdb.org/t/p/w500"
+}
+
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -18,14 +27,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     var movies = [Movie]()
     
     
-    struct Movie {
-        let title : String?
-        let overview : String?
-        let poster_path: String?
-        let backdrop_path: String?
-        let release_date: String?
-        static let baseImageURL = "https://image.tmdb.org/t/p/w500"
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

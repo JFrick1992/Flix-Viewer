@@ -10,7 +10,7 @@ import UIKit
 import AlamofireImage
 
 class MovieDetailsViewController: UIViewController {
-    var movie : NowPlayingViewController.Movie!
+    var movie : Movie!
     
    
     @IBOutlet weak var overviewTextView: UITextView!
@@ -21,32 +21,20 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.title = movie.title! + " Details"
         releaseDateLabel.text = movie.release_date
         titleLabel.text = movie.title
         overviewTextView.text = movie.overview
-        let urlPoster = URL(string: NowPlayingViewController.Movie.baseImageURL + movie.poster_path!)!
-        let urlBackDrop = URL(string: NowPlayingViewController.Movie.baseImageURL + movie.backdrop_path!)!
+        let urlPoster = URL(string: Movie.baseImageURL + movie.poster_path!)!
+        let urlBackDrop = URL(string: Movie.baseImageURL + movie.backdrop_path!)!
         posterImageView.af_setImage(withURL: urlPoster)
         backdropImageView.af_setImage(withURL: urlBackDrop)
         
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
