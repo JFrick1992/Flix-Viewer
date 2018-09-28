@@ -34,9 +34,10 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 400
+        tableView.rowHeight = UITableViewAutomaticDimension
         fetchMovies()
-        
-        // Do any additional setup after loading the view.
+
     }
 
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
@@ -69,7 +70,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             }
         }
         task.resume()
-        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let moviesDetail = segue.destination as! MovieDetailsViewController
@@ -82,25 +82,18 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.movies.count
-    
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
         let title = movies[indexPath.row].title
         let overview = movies[indexPath.row].overview
         let posterPath = movies[indexPath.row].poster_path
-        
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
-        
         let posterURL = URL(string: Movie.baseImageURL + posterPath!)!
         cell.posterImageView.af_setImage(withURL: posterURL)
         return cell
     }
-    
-
 }

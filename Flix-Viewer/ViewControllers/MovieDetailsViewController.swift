@@ -13,7 +13,8 @@ class MovieDetailsViewController: UIViewController {
     var movie : Movie!
     
    
-    @IBOutlet weak var overviewTextView: UITextView!
+    
+    @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
@@ -24,7 +25,7 @@ class MovieDetailsViewController: UIViewController {
         self.title = movie.title! + " Details"
         releaseDateLabel.text = movie.release_date
         titleLabel.text = movie.title
-        overviewTextView.text = movie.overview
+        overviewLabel.text = movie.overview
         let urlPoster = URL(string: Movie.baseImageURL + movie.poster_path!)!
         let urlBackDrop = URL(string: Movie.baseImageURL + movie.backdrop_path!)!
         posterImageView.af_setImage(withURL: urlPoster)
