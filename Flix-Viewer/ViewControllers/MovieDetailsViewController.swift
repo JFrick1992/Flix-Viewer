@@ -22,14 +22,12 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.title = movie.title! + " Details"
-        releaseDateLabel.text = movie.release_date
+        self.title = movie.title + " Details"
+        releaseDateLabel.text = movie.releaseDate
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
-        let urlPoster = URL(string: Movie.baseImageURL + movie.poster_path!)!
-        let urlBackDrop = URL(string: Movie.baseImageURL + movie.backdrop_path!)!
-        posterImageView.af_setImage(withURL: urlPoster)
-        backdropImageView.af_setImage(withURL: urlBackDrop)
+        posterImageView.af_setImage(withURL: movie.posterUrl!)
+        backdropImageView.af_setImage(withURL: movie.backdropUrl!)
         
         
     }

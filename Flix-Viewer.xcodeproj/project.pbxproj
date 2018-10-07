@@ -16,6 +16,8 @@
 		5B4E3367214B085800FB3FF3 /* Flix_ViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E3366214B085800FB3FF3 /* Flix_ViewerUITests.swift */; };
 		5B4E3375214B46E200FB3FF3 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E3374214B46E200FB3FF3 /* NowPlayingViewController.swift */; };
 		5B4E3379214CBA3E00FB3FF3 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E3378214CBA3E00FB3FF3 /* MovieCell.swift */; };
+		5B8B16622169ADAE007468D5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8B16612169ADAE007468D5 /* Movie.swift */; };
+		5B8B16642169B879007468D5 /* MovieApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8B16632169B879007468D5 /* MovieApiManager.swift */; };
 		5B9915AE2153308000D08842 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9915AD2153308000D08842 /* MovieDetailsViewController.swift */; };
 		5B9915B221540A9800D08842 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9915B121540A9800D08842 /* PosterCell.swift */; };
 		5B9915B421540AE300D08842 /* SuperheroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9915B321540AE300D08842 /* SuperheroViewController.swift */; };
@@ -61,6 +63,8 @@
 		5B4E3368214B085800FB3FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B4E3374214B46E200FB3FF3 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		5B4E3378214CBA3E00FB3FF3 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		5B8B16612169ADAE007468D5 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		5B8B16632169B879007468D5 /* MovieApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiManager.swift; sourceTree = "<group>"; };
 		5B9915AD2153308000D08842 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		5B9915B121540A9800D08842 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		5B9915B321540AE300D08842 /* SuperheroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		5B4E3345214B085500FB3FF3 /* Flix-Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				5B8B16602169AD91007468D5 /* Models */,
 				5B9915AF215409B700D08842 /* Views */,
 				5B9915B0215409D200D08842 /* ViewControllers */,
 				5B4E3346214B085500FB3FF3 /* AppDelegate.swift */,
@@ -149,6 +154,15 @@
 				5B4E3368214B085800FB3FF3 /* Info.plist */,
 			);
 			path = "Flix-ViewerUITests";
+			sourceTree = "<group>";
+		};
+		5B8B16602169AD91007468D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B8B16612169ADAE007468D5 /* Movie.swift */,
+				5B8B16632169B879007468D5 /* MovieApiManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5B9915AF215409B700D08842 /* Views */ = {
@@ -405,10 +419,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B8B16622169ADAE007468D5 /* Movie.swift in Sources */,
 				5B9915AE2153308000D08842 /* MovieDetailsViewController.swift in Sources */,
 				5B9915B221540A9800D08842 /* PosterCell.swift in Sources */,
 				5B9915B421540AE300D08842 /* SuperheroViewController.swift in Sources */,
 				5B4E3375214B46E200FB3FF3 /* NowPlayingViewController.swift in Sources */,
+				5B8B16642169B879007468D5 /* MovieApiManager.swift in Sources */,
 				5B4E3347214B085500FB3FF3 /* AppDelegate.swift in Sources */,
 				5B4E3379214CBA3E00FB3FF3 /* MovieCell.swift in Sources */,
 			);
